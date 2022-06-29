@@ -1,0 +1,28 @@
+{
+  "name": "projeto-2.3-to-do-list-mongo-db",
+  "version": "1.0.0",
+  "description": "Back End de uma To Do List utilizando MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevzVictor/projeto-2.3-To-do-list-Mongo-Db.git"
+  },
+  "keywords": [],
+  "author": "Victor Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevzVictor/projeto-2.3-To-do-list-Mongo-Db/issues"
+  },
+  "homepage": "https://github.com/DevzVictor/projeto-2.3-To-do-list-Mongo-Db#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
