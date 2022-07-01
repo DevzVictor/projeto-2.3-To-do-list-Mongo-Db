@@ -1,6 +1,5 @@
 const express = require('express');
 const route = express.Router();
-
 const tarefasController = require('../controllers/tarefas.controllers');
 
 route.get('/find-tarefas', tarefasController.findAllTarefasController);

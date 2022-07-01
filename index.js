@@ -3,6 +3,9 @@ const cors = require('cors');
 const port = 3000;
 const app = express();
 const routes = require('./src/routes/tarefas.routes');
+const connectToDatabase = require('./src/database/database');
+
+connectToDatabase();
 
 app.use(express.json());
 app.use(cors());

@@ -1,44 +1,27 @@
-const tarefas = [
-  {
-    id: 1,
-    tarefa: 'Lavar moto',
-  },
-  {
-    id: 2,
-    tarefa: 'Ir no medico',
-  },
-  {
-    id: 3,
-    tarefa: 'Ir no mercado',
-  },
-];
+const Tarefa = require('../models/Tarefa');
 
-const findAllTarefasService = () => {
+const findAllTarefasService = async () => {
+  const tarefas = await Tarefa.find();
   return tarefas;
 };
 
-const findByIdTarefasService = (id) => {
-  const tarefa = tarefas.find((tarefa) => tarefa.id === id);
-  return tarefa;
+const findByIdTarefasService = async (id) => {
+  const tarefa = await Tarefa.findById(id);
+  return tarefa; 
 };
 
-const createTarefaService = (newTarefa) => {
-  const newId = tarefas.length + 1;
-  newTarefa.id = newId;
-  tarefas.push(newTarefa);
-  return newTarefa;
+const createTarefaService = async (newTarefa) => {
+  const tarefaCreated = await Tarefa.create(newTarefa);
+  return tarefaCreated;
 };
 
-const updateTarefasService = (id, tarefaEdited) => {
-  tarefaEdited['id'] = id;
-  const tarefaIndex = tarefas.findIndex((tarefa) => tarefa.id == id);
-  tarefas[tarefaIndex] = tarefaEdited;
-  return tarefaEdited;
+const updateTarefasService = async (id, tarefaEdited) => {
+  const tarefaUpdate = await Tarefa.findByIdAndUpdate(id, tarefaEdited).setOptions({returnOriginal: false})
+  return tarefaUpdate;
 };
 
-const deleteTarefasService = (id) => {
-  const tarefaIndex = tarefas.findIndex((tarefa) => tarefa.id == id);
-  return tarefas.splice(tarefaIndex, 1);
+const deleteTarefasService = async (id) => {
+  return await Tarefa.findByIdAndDelete(id);
 };
 
 module.exports = {

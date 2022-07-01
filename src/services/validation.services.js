@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 function validTarefa(tarefa) {
   if (!tarefa.tarefa) {
     return false;
@@ -7,7 +9,7 @@ function validTarefa(tarefa) {
 }
 
 function validId(id) {
-  if (!id) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     return false;
   } else {
     return true;
