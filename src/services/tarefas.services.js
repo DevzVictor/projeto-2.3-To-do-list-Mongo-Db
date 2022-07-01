@@ -7,7 +7,7 @@ const findAllTarefasService = async () => {
 
 const findByIdTarefasService = async (id) => {
   const tarefa = await Tarefa.findById(id);
-  return tarefa; 
+  return tarefa;
 };
 
 const createTarefaService = async (newTarefa) => {
@@ -16,7 +16,10 @@ const createTarefaService = async (newTarefa) => {
 };
 
 const updateTarefasService = async (id, tarefaEdited) => {
-  const tarefaUpdate = await Tarefa.findByIdAndUpdate(id, tarefaEdited).setOptions({returnOriginal: false})
+  const tarefaUpdate = await Tarefa.findByIdAndUpdate(
+    id,
+    tarefaEdited,
+  ).setOptions({ returnOriginal: false });
   return tarefaUpdate;
 };
 
