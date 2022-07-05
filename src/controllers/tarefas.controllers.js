@@ -1,4 +1,3 @@
-const { default: mongoose } = require('mongoose');
 const tarefasService = require('../services/tarefas.services');
 const validationService = require('../services/validation.services');
 
@@ -12,60 +11,30 @@ const findAllTarefasController = async (req, res) => {
 
 const findByIdTarefasController = async (req, res) => {
   const idParam = req.params.id;
-  const validId = validationService.validId(idParam);
-  if (validId) {
-    const selectTarefa = await tarefasService.findByIdTarefasService(
-      idParam,
-    );
-    const chosenTarefa = validationService.chosenTarefa(selectTarefa);
-    if (chosenTarefa) {
-      res.status(200).send(selectTarefa);
-    } else {
-      return res.status(404).send({ message: 'Tarefa não encontrada!' });
-    }
+  const selectTarefa = await tarefasService.findByIdTarefasService(idParam);
+  const chosenTarefa = validationService.chosenTarefa(selectTarefa);
+  if (chosenTarefa) {
+    res.status(200).send(selectTarefa);
   } else {
-    return res.status(400).send({ message: 'ID invalido!' });
+    return res.status(404).send({ message: 'Tarefa não encontrada!' });
   }
 };
 
 const createTarefasController = async (req, res) => {
   const tarefa = req.body;
-  const validTarefa = validationService.validTarefa(tarefa);
-  if (validTarefa) {
-    const newTarefa = await tarefasService.createTarefaService(tarefa);
-    return res
-      .status(201)
-      .send({ message: 'Tarefa criada com sucesso', data: newTarefa });
-  } else {
-    return res.status(400).send({ message: 'Não envie uma tarefa vazia!' });
-  }
+  const newTarefa = await tarefasService.createTarefaService(tarefa);
+  return res.status(201).send({ message: 'Tarefa criada com sucesso', data: newTarefa });
 };
 
 const updateTarefasController = async (req, res) => {
   const idParam = req.params.id;
-  const validId = validationService.validId(idParam);
-  if (validId) {
-    const tarefaEdit = req.body;
-    const validTarefa = validationService.validTarefa(tarefaEdit);
-    if (validTarefa) {
-      const updatedTarefa = await tarefasService.updateTarefasService(
-        idParam,
-        tarefaEdit,
-      );
-      return res.status(200).send(updatedTarefa);
-    } else {
-      return res.status(404).send({ message: 'Não envie a tarefa em branco' });
-    }
-  } else {
-    return res.status(400).send({ message: 'ID invalido!' });
-  }
+  const tarefaEdit = req.body;
+  const updatedTarefa = await tarefasService.updateTarefasService(idParam,tarefaEdit,);
+  return res.status(200).send(updatedTarefa);
 };
 
 const deleteTarefasController = async (req, res) => {
   const idParam = req.params.id;
-  if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(400).send({ message: 'ID inválido!' });
-  }
   await tarefasService.deleteTarefasService(idParam);
   res.send({ message: 'Tarefa deletada com sucesso!' });
 };
