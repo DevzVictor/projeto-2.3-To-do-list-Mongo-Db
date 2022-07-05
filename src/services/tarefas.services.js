@@ -1,30 +1,30 @@
 const Tarefa = require('../models/Tarefa');
 
 const findAllTarefasService = async () => {
-  const tarefas = await Tarefa.find();
-  return tarefas;
+  const allTarefas = await Tarefa.find();
+  return allTarefas;
 };
 
-const findByIdTarefasService = async (id) => {
-  const tarefa = await Tarefa.findById(id);
-  return tarefa;
+const findByIdTarefasService = async (idParam) => {
+  const oneTarefa = await Tarefa.findById(idParam);
+  return oneTarefa;
 };
 
 const createTarefaService = async (newTarefa) => {
-  const tarefaCreated = await Tarefa.create(newTarefa);
-  return tarefaCreated;
+  const createdTarefa = await Tarefa.create(newTarefa);
+  return createdTarefa;
 };
 
-const updateTarefasService = async (id, tarefaEdited) => {
-  const tarefaUpdate = await Tarefa.findByIdAndUpdate(
-    id,
-    tarefaEdited,
+const updateTarefasService = async (idParam, editTarefa) => {
+  const updateTarefa = await Tarefa.findByIdAndUpdate(
+    idParam,
+    editTarefa,
   ).setOptions({ returnOriginal: false });
-  return tarefaUpdate;
+  return updateTarefa;
 };
 
-const deleteTarefasService = async (id) => {
-  return await Tarefa.findByIdAndDelete(id);
+const deleteTarefasService = async (idParam) => {
+  return await Tarefa.findByIdAndDelete(idParam);
 };
 
 module.exports = {

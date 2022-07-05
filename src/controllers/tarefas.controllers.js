@@ -14,12 +14,12 @@ const findByIdTarefasController = async (req, res) => {
   const idParam = req.params.id;
   const validId = validationService.validId(idParam);
   if (validId) {
-    const tarefaEscolhida = await tarefasService.findByIdTarefasService(
+    const selectTarefa = await tarefasService.findByIdTarefasService(
       idParam,
     );
-    const chosenTarefa = validationService.chosenTarefa(tarefaEscolhida);
+    const chosenTarefa = validationService.chosenTarefa(selectTarefa);
     if (chosenTarefa) {
-      res.status(200).send(tarefaEscolhida);
+      res.status(200).send(selectTarefa);
     } else {
       return res.status(404).send({ message: 'Tarefa não encontrada!' });
     }
