@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectToDatabase = () => {
   mongoose
-    .connect('mongodb://localhost:27017/todolist-db', {
+    .connect('mongodb+srv://root:admin@api-todolist.z4f7c.mongodb.net/?retryWrites=true&w=majority', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
