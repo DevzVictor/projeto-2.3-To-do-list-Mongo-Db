@@ -1,0 +1,201 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API To Do List",
+    "description": "API para CRUD de To Do List",
+    "termsOfService": "",
+    "contact": {
+      "email": "victor-dev@outlook.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/tarefas",
+      "description": "API de teste"
+    },
+    {
+      "url": "https://api-todolist-blue.herokuapp.com/tarefas",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/all-tarefas": {
+      "get": {
+        "summary": "Lista de todas as tarefas",
+        "description": "Rota responsável por listar todas as tarefas",
+        "tags": ["Tarefas"],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tarefas"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/find-tarefas/{id}": {
+      "get": {
+        "summary": "Busca uma tarefa pelo ID",
+        "description": "Rota responsável por buscar uma tarefa pelo ID",
+        "tags": ["Tarefas"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da tarefa para a busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Tarefas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create-tarefas": {
+      "post": {
+        "summary": "Cadastrar uma tarefa",
+        "description": "Rota responsável por cadastrar uma tarefa",
+        "tags": ["Tarefas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tarefas"
+              },
+              "examples": {
+                "Tarefas": {
+                  "value": {
+                    "tarefa": "Estudar Python"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Tarefas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update-tarefas/{id}": {
+      "put": {
+        "summary": "Editar uma tarefa pelo ID",
+        "description": "Rota responsável por editar uma tarefa pelo ID",
+        "tags": ["Tarefas"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da tarefa para a busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tarefas"
+              },
+              "examples": {
+                "Tarefas": {
+                  "value": {
+                    "tarefa": "Estudar Python Editado"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Tarefas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete-tarefas/{id}": {
+      "delete": {
+        "summary": "Apagar uma tarefa pelo ID",
+        "description": "Rota responsável por apagar uma tarefa pelo ID",
+        "tags": ["Tarefas"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da tarefa para deleção",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Tarefas": {
+        "type": "object",
+        "properties": {
+          "tarefa": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
