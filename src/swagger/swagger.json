@@ -15,7 +15,7 @@
       "description": "API de teste"
     },
     {
-      "url": "https://api-todolist-blue.herokuapp.com/tarefas",
+      "url": "https://api-todolist-blue.herokuapp.com",
       "description": "API de produção"
     }
   ],
