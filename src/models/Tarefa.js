@@ -5,6 +5,10 @@ const TarefaSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  complete: {
+    type: Boolean,
+    require: true,
+  },
 });
 
 const Tarefa = mongoose.model('todolists', TarefaSchema);

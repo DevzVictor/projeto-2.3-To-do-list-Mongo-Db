@@ -4,7 +4,7 @@ const validationService = require('../services/validation.services');
 const findAllTarefasController = async (req, res) => {
   const allTarefas = await tarefasService.findAllTarefasService();
   if (allTarefas.length == 0) {
-    return res.status(404).send({ message: 'Não existe nehuma tarefa' });
+    return res.status(404).send({ message: 'Não existe nenhuma tarefa' });
   }
   res.send(allTarefas);
 };
