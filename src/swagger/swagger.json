@@ -90,7 +90,8 @@
               "examples": {
                 "Tarefas": {
                   "value": {
-                    "tarefa": "Estudar Python"
+                    "tarefa": "Estudar Python",
+                    "complete": false
                   }
                 }
               }
