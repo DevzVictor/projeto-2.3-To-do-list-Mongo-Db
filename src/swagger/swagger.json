@@ -138,7 +138,8 @@
               "examples": {
                 "Tarefas": {
                   "value": {
-                    "tarefa": "Estudar Python Editado"
+                    "tarefa": "Estudar Python Editado",
+                    "complete": true
                   }
                 }
               }
