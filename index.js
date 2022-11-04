@@ -9,8 +9,8 @@ const connectToDatabase = require('./src/database/database');
 
 connectToDatabase();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use('/tarefas', routes);
 app.use('/api-docs', swaggerRoutes);
 
