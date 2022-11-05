@@ -10,7 +10,7 @@ const validId = (req, res, next) => {
 
 const validObjectBody = (req, res, next) => {
   const tarefa = req.body;
-  if (!tarefa.tarefa) {
+  if (!tarefa.tarefa  && !tarefa.complete) {
     return res.status(400).send({message: 'Não envie uma tarefa vazia!'})
   };
   next();
